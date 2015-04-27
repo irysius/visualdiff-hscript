@@ -129,7 +129,7 @@ function processReplaceText(patch: IVPatch, parentKey: string, patches: any) {
 }
 
 export function processPatches(rootNode, patches) {
-    var indices = patchIndices(patches);
+    var indices = domIndices(patches);
     var domindex = domIndex(rootNode, patches.a, indices);
     var key;
     for (key in patches) {
@@ -164,13 +164,10 @@ export function processPatches(rootNode, patches) {
         }
     }
 
-    function patchIndices(patches): Array<number> {
+    function domIndices(patches): Array<number> {
         var indices = [];
-        var key;
-        for (key in patches) {
-            if (key !== 'a') {
-                indices.push(parseInt(key));
-            }
+        for (let i = 0; i <= patches.a.count; ++i) {
+            indices.push(i);
         }
         return indices;
     }

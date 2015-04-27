@@ -105,17 +105,17 @@ describe('visualdiff-hscript', function () {
 				done();
 			});
 	});
-	it('is expected to work with the following case', function (done) {
-		var before = '<p>one two three <a href="#">four five</a> six seven eight nine</p>';
-		var after = '<p>one <em>two</em> three <a href="#">four five</a> six <strong>seven eight</strong> nine</p>';
+	// it('is expected to work with the following case', function (done) {
+	// 	var before = '<p>one two three <a href="#">four five</a> six seven eight nine</p>';
+	// 	var after = '<p>one <em>two</em> three <a href="#">four five</a> six <strong>seven eight</strong> nine</p>';
 		
-		var expected = '<li>one two</li><ul><li>Square</li><li>Rectangle</li><li>Circle</li></ul><li>three</li>';
-		visualDiff.getHtmlDiff(before, after)
-			.then(function (result) {
-				expect(expected).to.equal(result);
-			})
-			.then(function () {
-				done();
-			});
-	});
+	// 	var expected = '<li>one two</li><ul><li>Square</li><li>Rectangle</li><li>Circle</li></ul><li>three</li>';
+	// 	visualDiff.getHtmlDiff(before, after)
+	// 		.then(function (result) {
+	// 			expect(expected).to.equal(result);
+	// 		})
+	// 		.then(function () {
+	// 			done();
+	// 		});
+	// });
 });
