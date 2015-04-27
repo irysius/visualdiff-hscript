@@ -1,7 +1,7 @@
 {
-  "name": "visual-diff",
+  "name": "visualdiff-hscript",
   "version": "0.0.0",
-  "description": "Produce hyperscript patches that result in a combined diff view",
+  "description": "Produce an html diff between two DOM fragments using hyperscript.",
   "main": "main.js",
   "scripts": {
     "test": "mocha --require mocha-clean ./test/main.js"
