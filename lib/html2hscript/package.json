@@ -1,0 +1,57 @@
+{
+  "name": "html2hscript",
+  "version": "1.0.4",
+  "description": "parse html into hyperscript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "htmlparser2": "^3.8.2"
+  },
+  "devDependencies": {
+    "tap": "^0.7.1"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "keywords": [
+    "html",
+    "parser",
+    "hyperscript"
+  ],
+  "author": {
+    "name": "https://www.npmjs.com/~unframework"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twilson63/html2hscript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twilson63/html2hscript/issues"
+  },
+  "homepage": "https://github.com/twilson63/html2hscript",
+  "gitHead": "7334f7e32ee90a0a62de8f512a3ece65205462d8",
+  "_id": "html2hscript@1.0.4",
+  "_shasum": "d8b07d65207f58e49b8cf3d92f438e397acf4e6e",
+  "_from": "html2hscript@>=1.0.4 <2.0.0",
+  "_npmVersion": "2.7.0",
+  "_nodeVersion": "1.5.0",
+  "_npmUser": {
+    "name": "twilson63",
+    "email": "tom@jackhq.com"
+  },
+  "maintainers": [
+    {
+      "name": "twilson63",
+      "email": "tom@jackhq.com"
+    }
+  ],
+  "dist": {
+    "shasum": "d8b07d65207f58e49b8cf3d92f438e397acf4e6e",
+    "tarball": "http://registry.npmjs.org/html2hscript/-/html2hscript-1.0.4.tgz"
+  },
+  "_resolved": "https://registry.npmjs.org/html2hscript/-/html2hscript-1.0.4.tgz",
+  "readme": "ERROR: No README data found!"
+}
