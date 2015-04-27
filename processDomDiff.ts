@@ -112,7 +112,15 @@ function processReplaceText(patch: IVPatch, parentKey: string, patches: any) {
             });
             if (patches.hasOwnProperty(parentKey)) {
                 if (_.isArray(patches[parentKey])) {
-                    patches[parentKey].concat(newPatches);
+                    if (origText.text.indexOf(patchText.text) === -1) {
+                        var missingInsert = {
+                            type: VPatch.INSERT,
+                            vNode: null,
+                            patch: h('span.diff-added', patchText.text)
+                        };
+                        // TODO: Fix <span> <span> issue.
+                        patches[parentKey].unshift(missingInsert);
+                    }
                 } else {
                     patches[parentKey] = [patches[parentKey]].concat(newPatches);
                 }
