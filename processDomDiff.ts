@@ -2,6 +2,7 @@ import _ = require('lodash');
 import { getTextDiff, IDiffMapper } from './helpers';
 import validator = require('validator');
 var h = require('virtual-dom/h');
+var domIndex = require('./node_modules/virtual-dom/vdom/dom-index');
 
 interface IVNode {
     tagName: string;
@@ -95,12 +96,7 @@ function processReplaceNode(patch: IVPatch) {
     }
 }
 
-function processReplaceText(patch: IVPatch, key: string, patches: any) {
-    var parentKey: string;
-    if (!isNaN(parseInt(key))) {
-        parentKey = (parseInt(key) - 1) + '';
-    }
-
+function processReplaceText(patch: IVPatch, parentKey: string, patches: any) {
     if (patch && patch.type === VPatch.VTEXT) {
         let origText = parseVText(patch.vNode);
         let patchText = parseVText(patch.patch);
@@ -132,7 +128,9 @@ function processReplaceText(patch: IVPatch, key: string, patches: any) {
     }
 }
 
-export function processPatches(patches) {
+export function processPatches(rootNode, patches) {
+    var indices = patchIndices(patches);
+    var domindex = domIndex(rootNode, patches.a, indices);
     var key;
     for (key in patches) {
         if (key !== 'a') {
@@ -161,9 +159,29 @@ export function processPatches(patches) {
                 processReplaceNode(patch);
                 break;
             case VPatch.VTEXT:
-                processReplaceText(patch, key, patches);
+                processReplaceText(patch, findNode(domindex[key].parentNode), patches);
                 break;
         }
+    }
+
+    function patchIndices(patches): Array<number> {
+        var indices = [];
+        var key;
+        for (key in patches) {
+            if (key !== 'a') {
+                indices.push(parseInt(key));
+            }
+        }
+        return indices;
+    }
+    function findNode(node) {
+        var key;
+        for (key in domindex) {
+            if (_.isEqual(domindex[key], node)) {
+                return key;
+            }
+        }
+        return null;
     }
 }
 

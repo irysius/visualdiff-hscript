@@ -10,7 +10,7 @@ export function getHtmlDiff(before: string, after: string): Promise<string> {
     .spread(function(treeBefore, treeAfter) {
         var patches = domdiff(treeBefore, treeAfter);
         var rootNode = createElement(treeBefore);
-        processPatches(patches);
+        processPatches(rootNode, patches);
         patch(rootNode, patches);
         var result = '';
         rootNode.childNodes.forEach(function(node) {
