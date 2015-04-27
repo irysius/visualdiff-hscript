@@ -61,7 +61,8 @@ function processRemoveNode(patch: IVPatch) {
     if (patch && patch.type === VPatch.REMOVE) {
         let origText = parseVText(patch.vNode);
         if (origText) {
-            // TODO: 
+            patch.type = VPatch.VNODE;
+            patch.patch = h('span.diff-removed', origText.text);
         } else {
             patch.type = VPatch.PROPS;
             let origNode = parseVNode(patch.vNode);
@@ -75,7 +76,7 @@ function processAddNode(patch: IVPatch) {
     if (patch && patch.type === VPatch.INSERT) {
         let patchText = parseVText(patch.patch);
         if (patchText) {
-            // TODO:
+            patch.patch = h('span.diff-added', patchText.text);
         } else {
             let patchNode = parseVNode(patch.patch);
             let className = modifyClassName(patchNode, 'diff-added');
@@ -125,7 +126,8 @@ function processReplaceText(patch: IVPatch, key: string, patches: any) {
             patch.type = VPatch.VNODE;
             patch.patch = head;
         } else {
-            // TODO:       
+            patch.type = VPatch.VNODE;
+            patch.patch = h('span.diff-changed', patchText.text);
         }
     }
 }
@@ -141,6 +143,7 @@ export function processPatches(patches) {
                 });
             } else {
                 let patch = parseVPatch(patches[key]);
+                
                 processPatch(patch, key, patches);
             }
         }
