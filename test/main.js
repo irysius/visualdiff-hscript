@@ -109,7 +109,7 @@ describe('visualdiff-hscript', function () {
 		var before = '<p>one two three <a href="#">four five</a> six seven eight nine</p>';
 		var after = '<p>one <em>two</em> three <a href="#">four five</a> six <strong>seven eight</strong> nine</p>';
 		
-		var expected = '<p>one <em class="diff-changed">two</em><span class="diff-added"> three </span><a href="#" class="diff-added">four five</a><span class="diff-added"> six </span><strong class="diff-added">seven eight</strong><span class="diff-added"> nine</span></p>';
+		var expected = '<p><span>one </span><em class="diff-changed">two</em><span class="diff-added"> three </span><a href="#" class="diff-added">four five</a><span class="diff-added"> six </span><strong class="diff-added">seven eight</strong><span class="diff-added"> nine</span></p>';
 		visualDiff.getHtmlDiff(before, after)
 			.then(function (result) {
 				expect(expected).to.equal(result);
