@@ -96,10 +96,19 @@ describe('visualdiff-hscript', function () {
 		var after2 = '<p>one three</p>';
 
 		var expected2 = '<p><span>one </span><span class="diff-removed">two </span><span>three</span></p>';
-		Promise.all([visualDiff.getHtmlDiff(before1, after1), visualDiff.getHtmlDiff(before2, after2)])
-			.spread(function (result1, result2) {
+		
+		var before3 = '<p>Today help for course work is more accessible than ever before.</p>';
+		var after3 = '<p>Today, help for course work is more accessible than ever before.</p>';
+		
+		var expected3 = '<p><span>Today</span><span class="diff-added">,</span><span> help for course work is more accessible than ever before.</span></p>';
+		Promise.all([
+			visualDiff.getHtmlDiff(before1, after1), 
+			visualDiff.getHtmlDiff(before2, after2),
+			visualDiff.getHtmlDiff(before3, after3)])
+			.spread(function (result1, result2, result3) {
 				expect(expected1).to.equal(result1);
 				expect(expected2).to.equal(result2);
+				expect(expected3).to.equal(result3);
 			})
 			.then(function () {
 				done();

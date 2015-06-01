@@ -4,7 +4,8 @@
   "description": "Produce an html diff between two DOM fragments using hyperscript.",
   "main": "main.js",
   "scripts": {
-    "test": "mocha --require mocha-clean ./test/main.js"
+    "test": "mocha --require mocha-clean ./test/main.js",
+    "install": "cp ./serialize-custom.js ./node_modules/virtual-dom/node_modules/global/node_modules/min-document/serialize.js"
   },
   "keywords": [
     "virtual-dom",
