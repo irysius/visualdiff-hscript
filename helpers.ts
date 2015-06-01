@@ -5,6 +5,8 @@ var h = require('virtual-dom/h');
 var jsdiff = require('diff');
 var vm = require('vm');
 var parser = require('./lib/html2hscript/index');
+var Entities = require('html-entities').AllHtmlEntities;
+var entities = new Entities();
 
 export function parseHtml(rawHtml: string): Promise<any> {
     var sandbox = { h: h };
@@ -23,6 +25,7 @@ export function parseHtml(rawHtml: string): Promise<any> {
 
 export function wrapHtml(rawHtml: string): string {
     rawHtml = rawHtml || '';
+    rawHtml = entities.decode(rawHtml);
     return `<div id="container">
 ${rawHtml}
 </div>`;
